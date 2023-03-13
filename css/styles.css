@@ -56,6 +56,7 @@ header h1 {
   align-items: center;
   cursor: pointer;
 }
+
 .groupCirculo {
   width: 48px;
   height: 48px;
@@ -67,8 +68,6 @@ header h1 {
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  /* position: absolute; */
-  /* top: 850px; */
 }
 
 .triangulo {
@@ -101,8 +100,6 @@ header h1 {
 .boxGrabacion {
   width: 864px;
   height: 708px;
-  /* left: 288px;
-  top: 141px; */
   margin: auto;
   border-radius: 8px;
   position: relative;
@@ -133,11 +130,13 @@ header h1 {
   position: absolute;
   top: 612px;
 }
+
 .boxBotones {
   margin-top: 100px;
   display: flex;
   justify-content: space-between;
 }
+
 #botonAtras1,
 #botonSiguiente1,
 #botonAtras2,
@@ -154,14 +153,10 @@ header h1 {
   margin-left: 30px;
 }
 
-.timeGroup  {
+.timeGroup {
   position: absolute;
   top: 10px;
   right: 50px;
-  /* display: flex; */
-  /* align-items: center; */
-  /* justify-content: center; */
-
   font-family: 'Roboto';
   font-size: 20px;
   font-weight: bolder;
@@ -171,7 +166,7 @@ header h1 {
 
 .bolita {
   position: absolute;
-  right:-20px;
+  right: -20px;
   top: 5px;
   width: 15px;
   height: 15px;
@@ -180,21 +175,25 @@ header h1 {
   margin-left: 10px;
   animation: pulsate 1s ease-out infinite;
 }
+
 .temporizador {
   font-size: 20px;
   /* font-weight: bold; */
   color: #ffffff;
   text-shadow: 1px 1px 1px black;
 }
+
 @keyframes pulsate {
   0% {
     transform: scale(0.8);
     opacity: 0.5;
   }
+
   50% {
     transform: scale(1);
     opacity: 1;
   }
+
   100% {
     transform: scale(0.8);
     opacity: 0.5;
@@ -203,7 +202,6 @@ header h1 {
 
 button {
   border: none;
-  /* background-color: #ffffff00; */
   cursor: pointer;
   margin: 10px;
   width: 50px;
@@ -211,27 +209,32 @@ button {
   border-radius: 50%;
   font-family: 'Roboto';
 }
+
 button img {
   width: 35px;
   height: 35px;
 }
+
 .porFinTerminado {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
+
 .porFinTerminado img {
   width: 500px;
   margin: 50px
 }
+
 .porFinTerminado h3 {
   font-size: 30px;
   margin: 20px;
 }
+
 .noVisible {
   display: none;
 }
 
-#porFinTerminado h1{
+#porFinTerminado h1 {
   margin: 20px;
 }

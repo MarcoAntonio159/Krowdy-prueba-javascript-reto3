@@ -29,7 +29,7 @@ function clickPrimerVideo() {
   mostrarCamara();
   ocultarBoxGroup();
   mostrarBoxGrabacion();
-  buttonPlay.disabled =false;
+  buttonPlay.disabled = false;
 }
 function play() {
   startRecording();
@@ -73,20 +73,20 @@ function actualizarTiempo() {
   }
 }
 
-video.addEventListener("loadedmetadata", function() {
+video.addEventListener("loadedmetadata", function () {
   // Establecer límite de 2 minutos
   endTime = Math.min(Math.floor(video.duration), 120);
 });
 
 function startRecording() {
   navigator.mediaDevices.getUserMedia({ audio: true, video: true })
-    .then(function(stream) {
+    .then(function (stream) {
       // Inicializar MediaRecorder
       mediaRecorder = new MediaRecorder(stream);
-      mediaRecorder.ondataavailable = function(event) {
+      mediaRecorder.ondataavailable = function (event) {
         chunks.push(event.data);
       };
-      mediaRecorder.onstop = function() {
+      mediaRecorder.onstop = function () {
         // Crear URL para la última imagen
         const blob = new Blob(chunks, { type: chunks[0].type });
         const url = URL.createObjectURL(blob);
@@ -110,7 +110,7 @@ function stopRecording() {
 
 //Muestra la camara al iniciar la pagina
 function mostrarCamara() {
-  navigator.mediaDevices.getUserMedia({ video: true, audio: true})
+  navigator.mediaDevices.getUserMedia({ video: true, audio: true })
     .then(
       (stream) => {
         video.srcObject = stream;
@@ -124,7 +124,7 @@ function mostrarCamara() {
 
 function detenerCamara() {
   const tracks = video.srcObject.getTracks();
-  tracks.forEach(function(track) {
+  tracks.forEach(function (track) {
     track.stop();
   });
   video.srcObject = null;
@@ -134,7 +134,7 @@ const pregunta2 = document.querySelector('#pregunta2');
 const pregunta3 = document.querySelector('#pregunta3');
 const pregunta4 = document.querySelector('#pregunta4');
 const pantallaFinal = document.querySelector('#porFinTerminado');
-const header= document.querySelector('#header');
+const header = document.querySelector('#header');
 
 
 function siguiente1() {
