@@ -231,3 +231,7 @@ button img {
 .noVisible {
   display: none;
 }
+
+#porFinTerminado h1{
+  margin: 20px;
+}
