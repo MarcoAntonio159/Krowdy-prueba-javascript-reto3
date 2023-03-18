@@ -59,19 +59,21 @@
 
     <!-- VISTA DE GRABACIONES DE VIDEOS -->
     <div class="boxGrabacion" style="display: none;" id="boxGrabacion">
-      <video class="boxVideo" id="videoElement" autoplay="true"></video>
+      <video class="boxVideo" id="videoElement" autoplay="true" muted></video>
       <div class="timeGroup" style="display:none">
         <div class="temporizador">02:00</div>
         <div class="bolita"></div>
       </div>
       <!-- Pregunta1 -->
+
+      <!-- <a href="#" download="pagina.html"></a> -->
       <div class="boxGroupPregunta1" id="pregunta1">
         <div class="boxPregunta">
           <div>
             <p>Cual fue tu video juego favorito<br>durante tu infancia?</p>
           </div>
           <div>
-            <button id="play" class="botonDeshabilitado" onclick="play()">
+            <button id="play" class="botonDeshabilitado" >
               Grabar
             </button>
             <button id="stop" class="botonDeshabilitado" onclick="stop()">
