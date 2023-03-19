@@ -17,7 +17,7 @@ const header = document.querySelector('#header');
 
 // ---------------------
 
-buttonPlay.addEventListener("click", function (ev) {
+buttonGrabar1.addEventListener("click", function (ev) {
   navigator.mediaDevices.getUserMedia({ audio: true, video: true })
     .then(record)
     .catch(err => console.log(err));
@@ -122,27 +122,27 @@ function clickPrimerVideo() {
   // startRecording();
   ocultarBoxGroup();
   mostrarBoxGrabacion();
-  buttonPlay.disabled = false;
+  buttonGrabar1.disabled = false;
 }
 function play() {
   startRecording();
   actualizarTiempo();
   startTime = Math.floor(Date.now() / 1000);
   disminuirTiempo = setInterval(actualizarTiempo, 1000);
-  buttonPlay.disabled = true;
-  buttonStop.disabled = false;
+  buttonGrabar1.disabled = true;
+  buttonPlay1.disabled = false;
   timeGroup.style.display = 'block';
 }
 function stop() {
   stopRecording();
   endTime = Math.min(Math.floor(video.duration), 0);
   buttonRePlay.disabled = false;
-  buttonStop.disabled = true;
+  buttonPlay1.disabled = true;
   timeGroup.style.display = 'none';
 }
 function rePlay() {
   buttonRePlay.disabled = true;
-  buttonPlay.disabled = false;
+  buttonGrabar1.disabled = false;
 }
 
 

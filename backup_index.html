@@ -15,7 +15,7 @@
   </header>
   <main>
     <div class="boxGroup" id="boxGroup">
-      <div class="box" id="primerVideo" >
+      <div class="box" id="primerVideo" onclick="clickPrimerVideo()">
         <div class="boxGrabado">
           <div class="circulo">
             <div class="triangulo"></div>
@@ -25,7 +25,7 @@
           <p>Cual fue tu video juego favorito durante tu infancia?</p>
         </div>
       </div>
-      <div class="box" id="segundoVideo" >
+      <div class="box" id="segundoVideo" onclick="clickPrimerVideo()">
         <div class="boxGrabado">
           <div class="circulo">
             <div class="triangulo"></div>
@@ -35,7 +35,7 @@
           <p>Cual es tu lenguaje favorito para programar?</p>
         </div>
       </div>
-      <div class="box" id="tercerVideo" >
+      <div class="box" id="tercerVideo" onclick="clickPrimerVideo()">
         <div class="boxGrabado">
           <div class="circulo">
             <div class="triangulo"></div>
@@ -45,7 +45,7 @@
           <p>Porque te gusta programar?</p>
         </div>
       </div>
-      <div class="box" id="cuartoVideo" >
+      <div class="box" id="cuartoVideo" onclick="clickPrimerVideo()">
         <div class="boxGrabado">
           <div class="circulo">
             <div class="triangulo"></div>
@@ -59,8 +59,7 @@
 
     <!-- VISTA DE GRABACIONES DE VIDEOS -->
     <div class="boxGrabacion" style="display: none;" id="boxGrabacion">
-      <video class="boxVideo" id="videoElement" playsinline autoplay muted></video>
-      <video class="boxVideo" id="videoGrabado" playsinline autoplay loop style="display: none"></video>
+      <video class="boxVideo" id="videoElement" autoplay="true" muted></video>
       <div class="timeGroup" style="display:none">
         <div class="temporizador">02:00</div>
         <div class="bolita"></div>
@@ -74,9 +73,11 @@
             <p>Cual fue tu video juego favorito<br>durante tu infancia?</p>
           </div>
           <div>
-            <button id="grabar" class="botonDeshabilitado" >Grabar</button>
-            <button id="play" class="botonDeshabilitado" disabled>
-              Play
+            <button id="play" class="botonDeshabilitado" >
+              Grabar
+            </button>
+            <button id="stop" class="botonDeshabilitado" onclick="stop()">
+              Stop
             </button>
             <button id="rePlay" class="botonDeshabilitado" onclick="rePlay()">
               Replay
@@ -96,10 +97,10 @@
             <p>Cual es tu lenguaje favorito<br> para programar?</p>
           </div>
           <div>
-            <button id="grabar" class="botonDeshabilitado">
+            <button id="play" class="botonDeshabilitado" onclick="play()">
               Grabar
             </button>
-            <button id="play" class="botonDeshabilitado">
+            <button id="stop" class="botonDeshabilitado" onclick="stop()">
               Stop
             </button>
             <button id="rePlay" class="botonDeshabilitado" onclick="rePlay()">
@@ -120,10 +121,10 @@
             <p>Porque te gusta programar</p>
           </div>
           <div>
-            <button id="grabar" class="botonDeshabilitado">
+            <button id="play" class="botonDeshabilitado" onclick="play()">
               Grabar
             </button>
-            <button id="play" class="botonDeshabilitado">
+            <button id="stop" class="botonDeshabilitado" onclick="stop()">
               Stop
             </button>
             <button id="rePlay" class="botonDeshabilitado" onclick="rePlay()">
@@ -143,10 +144,10 @@
             <p>Te divertiste realizando este <br>reto?</p>
           </div>
           <div>
-            <button id="grabar" class="botonDeshabilitado" >
+            <button id="play" class="botonDeshabilitado" onclick="play()">
               Grabar
             </button>
-            <button id="play" class="botonDeshabilitado" >
+            <button id="stop" class="botonDeshabilitado" onclick="stop()">
               Stop
             </button>
             <button id="rePlay" class="botonDeshabilitado" onclick="rePlay()">
@@ -173,6 +174,6 @@
 
   </main>
 </body>
-<script src="js/main.js" async></script>
+<script src="js/main.js"></script>
 
 </html>
