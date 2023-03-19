@@ -21,16 +21,48 @@ const header = document.querySelector('#header');
 const codec = 'video/mp4;codecs=h264,aac'
 const videoGrabado = document.querySelector('#videoGrabado');
 
+let startTime, endTime, disminuirTiempo;
+
+function actualizarTiempo() {
+  const tiempoTranscurrido = Math.floor(Date.now() / 1000) - startTime;
+  const segundosRestantes = Math.max(endTime - tiempoTranscurrido, 0);
+  const minutos = Math.floor(segundosRestantes / 60).toString().padStart(2, "0");
+  const segundos = (segundosRestantes % 60).toString().padStart(2, "0");
+  temporizador.innerHTML = `${minutos}:${segundos}`;
+
+  // Hacer que la bolita palpite mas rapido si queda menos de 10 segundos
+  if (segundosRestantes <= 10) {
+    bolita.style.animation = "pulsate 0.5s ease-out infinite";
+  } else {
+    bolita.style.animation = "";
+  }
+
+  // Finalizar la grabación si se llega al límite de tiempo
+  if (segundosRestantes === 0) {
+    clearInterval(disminuirTiempo);
+    stopRecording();
+  }
+}
+// Establecer límite de 2 minutos
+video.addEventListener("loadedmetadata", function () {
+  endTime = Math.min(Math.floor(video.duration), 5);
+});
+
 buttonGrabar.addEventListener('click', () => {
   if (buttonGrabar.textContent === 'Grabar') {
     startRecording();
+    actualizarTiempo();
+    startTime = Math.floor(Date.now() / 1000);
+    disminuirTiempo = setInterval(actualizarTiempo, 1000);
+    timeGroup.style.display = 'block';
   } else {
     stopRecording();
-    buttonGrabar.textContent = 'Grabar';
-    buttonPlay.disabled = false ;
-    video.style.display = 'none';
-    videoGrabado.style.display = 'block';
-    buttonGrabar.disabled = true;
+    // buttonGrabar.textContent = 'Grabar';
+    // buttonPlay.disabled = false ;
+    // video.style.display = 'none';
+    // videoGrabado.style.display = 'block';
+    // buttonGrabar.disabled = true;
+    // timeGroup.style.display = 'none';
   }
 })
 
@@ -77,6 +109,12 @@ function startRecording() {
 
 function stopRecording() {
   mediaRecorder.stop();
+  buttonGrabar.textContent = 'Grabar';
+    buttonPlay.disabled = false ;
+    video.style.display = 'none';
+    videoGrabado.style.display = 'block';
+    buttonGrabar.disabled = true;
+    timeGroup.style.display = 'none';
 }
 
 function handleSuccess(stream) {
