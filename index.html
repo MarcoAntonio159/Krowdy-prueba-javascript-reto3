@@ -61,7 +61,7 @@
     <div class="boxGrabacion" style="display: none;" id="boxGrabacion">
       <video class="boxVideo" id="videoElement" playsinline autoplay muted></video>
       <video class="boxVideo" id="videoGrabado" playsinline autoplay loop style="display: none"></video>
-      <div class="timeGroup" >
+      <div class="timeGroup" style="display:none">
         <div class="temporizador">02:00</div>
         <div class="bolita"></div>
       </div>
@@ -73,7 +73,7 @@
           <div id="pregunta1">
             <p>¿Cual fue tu video juego favorito durante tu infancia?</p>
           </div>
-          <div id="pregunta2" style="display: none;">
+          <!-- <div id="pregunta2" style="display: none;">
             <p>¿Cual es tu lenguaje favorito para programar?</p>
           </div>
           <div id="pregunta3" style="display: none;">
@@ -81,13 +81,13 @@
           </div>
           <div id="pregunta4" style="display: none;">
             <p>¿Te divertiste realizando este reto?</p>
-          </div>
+          </div> -->
           <div>
-            <button id="grabar" class="botonDeshabilitado" >Grabar</button>
-            <button id="play" class="botonDeshabilitado" disabled>
+            <button id="grabar" >Grabar</button>
+            <button id="play" disabled>
               Play
             </button>
-            <button id="rePlay" class="botonDeshabilitado" onclick="rePlay()">
+            <button id="rePlay" disabled>
               Replay
             </button>
           </div>

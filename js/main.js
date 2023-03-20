@@ -23,6 +23,16 @@ const videoGrabado = document.querySelector('#videoGrabado');
 
 let startTime, endTime, disminuirTiempo;
 
+buttonRePlay.addEventListener('click', () => {
+  videoGrabado.src = null;
+  videoGrabado.srcObject = null;
+  buttonRePlay.disabled = true;
+  buttonPlay.disabled = true;
+  buttonGrabar.disabled = false;
+  videoGrabado.style.display = 'none';
+  video.style.display = 'block';
+})
+
 function actualizarTiempo() {
   const tiempoTranscurrido = Math.floor(Date.now() / 1000) - startTime;
   const segundosRestantes = Math.max(endTime - tiempoTranscurrido, 0);
@@ -45,15 +55,15 @@ function actualizarTiempo() {
 }
 // Establecer límite de 2 minutos
 video.addEventListener("loadedmetadata", function () {
-  endTime = Math.min(Math.floor(video.duration), 5);
+  endTime = Math.min(Math.floor(video.duration), 120);
 });
 
 buttonGrabar.addEventListener('click', () => {
   if (buttonGrabar.textContent === 'Grabar') {
     startRecording();
-    actualizarTiempo();
     startTime = Math.floor(Date.now() / 1000);
     disminuirTiempo = setInterval(actualizarTiempo, 1000);
+    actualizarTiempo();
     timeGroup.style.display = 'block';
   } else {
     stopRecording();
@@ -68,7 +78,7 @@ buttonGrabar.addEventListener('click', () => {
 
 buttonPlay.addEventListener('click', () => {
   const mimeType = codec.split(';', 1)[0];
-  const superBuffer = new Blob(recordedBlobs, {type: mimeType});
+  const superBuffer = new Blob(recordedBlobs, { type: mimeType });
   videoGrabado.src = null;
   videoGrabado.srcObject = null;
   videoGrabado.src = window.URL.createObjectURL(superBuffer);
@@ -85,7 +95,7 @@ function handleDataAvailable(event) {
 
 function startRecording() {
   recordedBlobs = [];
-  const options = {codec};
+  const options = { codec };
 
   try {
     mediaRecorder = new MediaRecorder(window.stream, options);
@@ -108,13 +118,16 @@ function startRecording() {
 }
 
 function stopRecording() {
-  mediaRecorder.stop();
+  if (mediaRecorder && mediaRecorder.state !== "inactive") {
+    mediaRecorder.stop();
+  }
   buttonGrabar.textContent = 'Grabar';
-    buttonPlay.disabled = false ;
-    video.style.display = 'none';
-    videoGrabado.style.display = 'block';
-    buttonGrabar.disabled = true;
-    timeGroup.style.display = 'none';
+  buttonPlay.disabled = false;
+  video.style.display = 'none';
+  videoGrabado.style.display = 'block';
+  buttonGrabar.disabled = true;
+  timeGroup.style.display = 'none';
+  buttonRePlay.disabled = false;
 }
 
 function handleSuccess(stream) {
@@ -128,7 +141,7 @@ function handleSuccess(stream) {
 async function init(constraints) {
   try {
     const stream = await navigator.mediaDevices.getUserMedia(constraints);
-    handleSuccess(stream) ;
+    handleSuccess(stream);
   } catch (e) {
     console.error('navigator.getUserMedia error: ', e);
     errorMsgElement.innerHTML = 'Permisos denegados para acceder a camara y microfono.';
@@ -140,7 +153,7 @@ document.querySelector('#primerVideo').addEventListener('click', async () => {
   boxGrabacion.style.display = 'block';
   const constraints = {
     audio: {
-      
+
     },
     video: {
       width: 863, height: 612,
