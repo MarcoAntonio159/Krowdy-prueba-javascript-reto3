@@ -30,8 +30,8 @@ function listoGrabar() {
   buttonRePlay.disabled = true;
   video.style.display = 'block';
   videoGrabado.style.display = 'none'
-  // videoGrabado.src = null;
-  // videoGrabado.srcObject = null;
+  videoGrabado.src = null;
+  videoGrabado.srcObject = null;
 }
 
 conjuntoVideos.pregunta1;
@@ -49,26 +49,40 @@ const botonSiguiente = document.querySelector('#botonSiguiente1');
 botonSiguiente.addEventListener('click', () => {
   if(pregunta1.innerText === '¿Cual fue tu video juego favorito durante tu infancia?') {
     conjuntoVideos.pregunta1 = recordedBlobs;
-    recordedBlobs = [];
-    pregunta1.style.display = 'none';
-    pregunta2.style.display = 'block';
-    listoGrabar();
-    console.log('Este es la pregunta 1: ',conjuntoVideos);
-    return
+    if (typeof conjuntoVideos.pregunta1 === 'undefined') {
+      alert('Realice la grabacion del video, para grabar el siguiente video.')
+    } else {
+      recordedBlobs = [];
+      pregunta1.style.display = 'none';
+      pregunta2.style.display = 'block';
+      listoGrabar();
+      console.log('Este es la pregunta 1: ',conjuntoVideos);
+      return
+    }
   }
 
   if(pregunta2.innerText === '¿Cual es tu lenguaje favorito para programar?') {
     conjuntoVideos.pregunta2 = recordedBlobs;
+
+    if (conjuntoVideos.pregunta2.length  === 0) {
+      alert('Realice la grabacion del video, para grabar el siguiente video.')
+    } else {
     recordedBlobs = [];
     pregunta2.style.display = 'none';
     pregunta3.style.display = 'block';
     listoGrabar();
     console.log('Este es la pregunta 2: ',conjuntoVideos);
     return
+    }
   }
 
   if(pregunta3.innerText === '¿Porque te gusta programar?') {
     conjuntoVideos.pregunta3 = recordedBlobs;
+
+    if (conjuntoVideos.pregunta3.length  === 0) {
+      alert('Realice la grabacion del video, para grabar el siguiente video.')
+    } else {
+
     recordedBlobs = [];
     pregunta3.style.display = 'none';
     pregunta4.style.display = 'block';
@@ -76,18 +90,28 @@ botonSiguiente.addEventListener('click', () => {
     listoGrabar();
     console.log('Este es la pregunta 3: ',conjuntoVideos);
     return
+    }
   }
 
   if(pregunta4.innerText === '¿Te divertiste realizando este reto?') {
     conjuntoVideos.pregunta4 = recordedBlobs;
+
+    if (conjuntoVideos.pregunta4.length  === 0) {
+      alert('Realice la grabacion del video, para grabar el siguiente video.')
+    } else {
     recordedBlobs = [];
     pregunta3.style.display = 'none';
     pregunta4.style.display = 'block';
-    pantallaFinal.style.display = 'block'
     boxGrabacion.style.display = 'none';
+
+    pantallaFinal.classList.remove('noVisible');
+    pantallaFinal.classList.add('porFinTerminado');
+    header.classList.add('noVisible');
+
     listoGrabar();
     console.log('Este es la pregunta 4: ',conjuntoVideos);
     return
+    }
   }
 })
 
