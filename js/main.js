@@ -1,5 +1,6 @@
 let mediaRecorder;
 let recordedBlobs;
+let conjuntoVideos = {}
 
 const boxGroup = document.querySelector('#boxGroup');
 const boxGrabacion = document.querySelector('#boxGrabacion');
@@ -11,7 +12,7 @@ const buttonPlay = document.querySelector('#play');
 const buttonRePlay = document.querySelector('#rePlay');
 const timeGroup = document.querySelector('.timeGroup');
 
-const pregunta1 = document.querySelector('#pregunta1');
+const pregunta1 = document.querySelector('#pregunta');
 const pregunta2 = document.querySelector('#pregunta2');
 const pregunta3 = document.querySelector('#pregunta3');
 const pregunta4 = document.querySelector('#pregunta4');
@@ -22,6 +23,73 @@ const codec = 'video/mp4;codecs=h264,aac'
 const videoGrabado = document.querySelector('#videoGrabado');
 
 let startTime, endTime, disminuirTiempo;
+
+function listoGrabar() {
+  buttonGrabar.disabled = false;
+  buttonPlay.disabled = true;
+  buttonRePlay.disabled = true;
+  video.style.display = 'block';
+  videoGrabado.style.display = 'none'
+  // videoGrabado.src = null;
+  // videoGrabado.srcObject = null;
+}
+
+conjuntoVideos.pregunta1;
+// buttonPlay.addEventListener('click', () => {
+//   const mimeType = codec.split(';', 1)[0];
+//   const superBuffer = new Blob(recordedBlobs, { type: mimeType });
+//   videoGrabado.src = null;
+//   videoGrabado.srcObject = null;
+//   videoGrabado.src = window.URL.createObjectURL(superBuffer);
+//   videoGrabado.controls = true;
+//   videoGrabado.play();
+// })
+
+const botonSiguiente = document.querySelector('#botonSiguiente1');
+botonSiguiente.addEventListener('click', () => {
+  if(pregunta1.innerText === '¿Cual fue tu video juego favorito durante tu infancia?') {
+    conjuntoVideos.pregunta1 = recordedBlobs;
+    recordedBlobs = [];
+    pregunta1.style.display = 'none';
+    pregunta2.style.display = 'block';
+    listoGrabar();
+    console.log('Este es la pregunta 1: ',conjuntoVideos);
+    return
+  }
+
+  if(pregunta2.innerText === '¿Cual es tu lenguaje favorito para programar?') {
+    conjuntoVideos.pregunta2 = recordedBlobs;
+    recordedBlobs = [];
+    pregunta2.style.display = 'none';
+    pregunta3.style.display = 'block';
+    listoGrabar();
+    console.log('Este es la pregunta 2: ',conjuntoVideos);
+    return
+  }
+
+  if(pregunta3.innerText === '¿Porque te gusta programar?') {
+    conjuntoVideos.pregunta3 = recordedBlobs;
+    recordedBlobs = [];
+    pregunta3.style.display = 'none';
+    pregunta4.style.display = 'block';
+    botonSiguiente.textContent = 'Terminar';
+    listoGrabar();
+    console.log('Este es la pregunta 3: ',conjuntoVideos);
+    return
+  }
+
+  if(pregunta4.innerText === '¿Te divertiste realizando este reto?') {
+    conjuntoVideos.pregunta4 = recordedBlobs;
+    recordedBlobs = [];
+    pregunta3.style.display = 'none';
+    pregunta4.style.display = 'block';
+    pantallaFinal.style.display = 'block'
+    boxGrabacion.style.display = 'none';
+    listoGrabar();
+    console.log('Este es la pregunta 4: ',conjuntoVideos);
+    return
+  }
+})
 
 buttonRePlay.addEventListener('click', () => {
   videoGrabado.src = null;
@@ -62,8 +130,8 @@ buttonGrabar.addEventListener('click', () => {
   if (buttonGrabar.textContent === 'Grabar') {
     startRecording();
     startTime = Math.floor(Date.now() / 1000);
-    disminuirTiempo = setInterval(actualizarTiempo, 1000);
     actualizarTiempo();
+    disminuirTiempo = setInterval(actualizarTiempo, 1000);
     timeGroup.style.display = 'block';
   } else {
     stopRecording();
