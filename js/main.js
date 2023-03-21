@@ -303,7 +303,11 @@ async function init(constraints) {
   }
 }
 
-document.querySelector('#primerVideo').addEventListener('click', async () => {
+botonGrabarVideos = document.querySelector('.botonGrabarVideos');
+botonGrabarVideos.addEventListener('click', async() => {
+
+  botonGrabarVideos.style.display = 'none';
+// document.querySelector('#primerVideo').addEventListener('click', async () => {
   boxGroup.style.display = 'none';
   boxGrabacion.style.display = 'block';
   const constraints = {
