@@ -36,17 +36,6 @@ function listoGrabar() {
   videoGrabado.srcObject = null;
 }
 
-conjuntoVideos.pregunta1;
-// buttonPlay.addEventListener('click', () => {
-//   const mimeType = codec.split(';', 1)[0];
-//   const superBuffer = new Blob(recordedBlobs, { type: mimeType });
-//   videoGrabado.src = null;
-//   videoGrabado.srcObject = null;
-//   videoGrabado.src = window.URL.createObjectURL(superBuffer);
-//   videoGrabado.controls = true;
-//   videoGrabado.play();
-// })
-
 botonAtras.addEventListener('click', () => {
 
   if (pregunta2.innerText === '¿Cual es tu lenguaje favorito para programar?') {
@@ -222,12 +211,6 @@ buttonGrabar.addEventListener('click', () => {
     timeGroup.style.display = 'block';
   } else {
     stopRecording();
-    // buttonGrabar.textContent = 'Grabar';
-    // buttonPlay.disabled = false ;
-    // video.style.display = 'none';
-    // videoGrabado.style.display = 'block';
-    // buttonGrabar.disabled = true;
-    // timeGroup.style.display = 'none';
   }
 })
 
@@ -286,7 +269,7 @@ function stopRecording() {
 }
 
 function handleSuccess(stream) {
-  // buttonPlay
+
   console.log('getUserMedia() got stream: ', stream);
   window.stream = stream;
 
@@ -307,7 +290,6 @@ botonGrabarVideos = document.querySelector('.botonGrabarVideos');
 botonGrabarVideos.addEventListener('click', async() => {
 
   botonGrabarVideos.style.display = 'none';
-// document.querySelector('#primerVideo').addEventListener('click', async () => {
   boxGroup.style.display = 'none';
   boxGrabacion.style.display = 'block';
   const constraints = {
@@ -321,4 +303,3 @@ botonGrabarVideos.addEventListener('click', async() => {
   console.log('Usando media constraints: ', constraints);
   await init(constraints);
 })
-//asdasdasd
