@@ -18,8 +18,10 @@ const pregunta3 = document.querySelector('#pregunta3');
 const pregunta4 = document.querySelector('#pregunta4');
 const pantallaFinal = document.querySelector('#porFinTerminado');
 const header = document.querySelector('#header');
+const botonSiguiente = document.querySelector('#botonSiguiente1');
+const botonAtras = document.querySelector('#botonAtras1');
 
-const codec = 'video/mp4;codecs=h264,aac'
+const codec = 'video/webm;codecs=h264,opus'
 const videoGrabado = document.querySelector('#videoGrabado');
 
 let startTime, endTime, disminuirTiempo;
@@ -45,9 +47,69 @@ conjuntoVideos.pregunta1;
 //   videoGrabado.play();
 // })
 
-const botonSiguiente = document.querySelector('#botonSiguiente1');
+botonAtras.addEventListener('click', () => {
+
+  if (pregunta2.innerText === '¿Cual es tu lenguaje favorito para programar?') {
+    const mimeType = codec.split(';', 1)[0];
+    const superBuffer = new Blob(conjuntoVideos.pregunta1, { type: mimeType });
+    videoGrabado.src = null;
+    videoGrabado.srcObject = null;
+    videoGrabado.src = window.URL.createObjectURL(superBuffer);
+    videoGrabado.controls = true;
+    videoGrabado.play();
+
+    video.style.display = 'none';
+    videoGrabado.style.display = 'block';
+    buttonGrabar.disabled = true;
+    buttonPlay.disabled = false;
+    buttonRePlay.disabled = true;
+    pregunta2.style.display = 'none';
+    pregunta1.style.display = 'block';
+    return
+  }
+
+  if (pregunta3.innerText === '¿Porque te gusta programar?') {
+    const mimeType = codec.split(';', 1)[0];
+    const superBuffer = new Blob(conjuntoVideos.pregunta2, { type: mimeType });
+    videoGrabado.src = null;
+    videoGrabado.srcObject = null;
+    videoGrabado.src = window.URL.createObjectURL(superBuffer);
+    videoGrabado.controls = true;
+    videoGrabado.play();
+
+    video.style.display = 'none';
+    videoGrabado.style.display = 'block';
+    buttonGrabar.disabled = true;
+    buttonPlay.disabled = false;
+    buttonRePlay.disabled = true;
+    pregunta3.style.display = 'none';
+    pregunta2.style.display = 'block';
+    return
+  }
+
+  if (pregunta4.innerText === '¿Te divertiste realizando este reto?') {
+    const mimeType = codec.split(';', 1)[0];
+    const superBuffer = new Blob(conjuntoVideos.pregunta3, { type: mimeType });
+    videoGrabado.src = null;
+    videoGrabado.srcObject = null;
+    videoGrabado.src = window.URL.createObjectURL(superBuffer);
+    videoGrabado.controls = true;
+    videoGrabado.play();
+
+    video.style.display = 'none';
+    videoGrabado.style.display = 'block';
+    buttonGrabar.disabled = true;
+    buttonPlay.disabled = false;
+    buttonRePlay.disabled = true;
+    pregunta4.style.display = 'none';
+    pregunta3.style.display = 'block';
+    botonSiguiente.textContent = 'Siguiente';
+    return
+  }
+})
+
 botonSiguiente.addEventListener('click', () => {
-  if(pregunta1.innerText === '¿Cual fue tu video juego favorito durante tu infancia?') {
+  if (pregunta1.innerText === '¿Cual fue tu video juego favorito durante tu infancia?') {
     conjuntoVideos.pregunta1 = recordedBlobs;
     if (typeof conjuntoVideos.pregunta1 === 'undefined') {
       alert('Realice la grabacion del video, para grabar el siguiente video.')
@@ -56,61 +118,62 @@ botonSiguiente.addEventListener('click', () => {
       pregunta1.style.display = 'none';
       pregunta2.style.display = 'block';
       listoGrabar();
-      console.log('Este es la pregunta 1: ',conjuntoVideos);
+      console.log('Este es la pregunta 1: ', conjuntoVideos);
+      botonAtras.disabled = false;
       return
     }
   }
 
-  if(pregunta2.innerText === '¿Cual es tu lenguaje favorito para programar?') {
+  if (pregunta2.innerText === '¿Cual es tu lenguaje favorito para programar?') {
     conjuntoVideos.pregunta2 = recordedBlobs;
 
-    if (conjuntoVideos.pregunta2.length  === 0) {
+    if (conjuntoVideos.pregunta2.length === 0) {
       alert('Realice la grabacion del video, para grabar el siguiente video.')
     } else {
-    recordedBlobs = [];
-    pregunta2.style.display = 'none';
-    pregunta3.style.display = 'block';
-    listoGrabar();
-    console.log('Este es la pregunta 2: ',conjuntoVideos);
-    return
+      recordedBlobs = [];
+      pregunta2.style.display = 'none';
+      pregunta3.style.display = 'block';
+      listoGrabar();
+      console.log('Este es la pregunta 2: ', conjuntoVideos);
+      return
     }
   }
 
-  if(pregunta3.innerText === '¿Porque te gusta programar?') {
+  if (pregunta3.innerText === '¿Porque te gusta programar?') {
     conjuntoVideos.pregunta3 = recordedBlobs;
 
-    if (conjuntoVideos.pregunta3.length  === 0) {
+    if (conjuntoVideos.pregunta3.length === 0) {
       alert('Realice la grabacion del video, para grabar el siguiente video.')
     } else {
 
-    recordedBlobs = [];
-    pregunta3.style.display = 'none';
-    pregunta4.style.display = 'block';
-    botonSiguiente.textContent = 'Terminar';
-    listoGrabar();
-    console.log('Este es la pregunta 3: ',conjuntoVideos);
-    return
+      recordedBlobs = [];
+      pregunta3.style.display = 'none';
+      pregunta4.style.display = 'block';
+      botonSiguiente.textContent = 'Terminar';
+      listoGrabar();
+      console.log('Este es la pregunta 3: ', conjuntoVideos);
+      return
     }
   }
 
-  if(pregunta4.innerText === '¿Te divertiste realizando este reto?') {
+  if (pregunta4.innerText === '¿Te divertiste realizando este reto?') {
     conjuntoVideos.pregunta4 = recordedBlobs;
 
-    if (conjuntoVideos.pregunta4.length  === 0) {
+    if (conjuntoVideos.pregunta4.length === 0) {
       alert('Realice la grabacion del video, para grabar el siguiente video.')
     } else {
-    recordedBlobs = [];
-    pregunta3.style.display = 'none';
-    pregunta4.style.display = 'block';
-    boxGrabacion.style.display = 'none';
+      recordedBlobs = [];
+      pregunta3.style.display = 'none';
+      pregunta4.style.display = 'block';
+      boxGrabacion.style.display = 'none';
 
-    pantallaFinal.classList.remove('noVisible');
-    pantallaFinal.classList.add('porFinTerminado');
-    header.classList.add('noVisible');
+      pantallaFinal.classList.remove('noVisible');
+      pantallaFinal.classList.add('porFinTerminado');
+      header.classList.add('noVisible');
 
-    listoGrabar();
-    console.log('Este es la pregunta 4: ',conjuntoVideos);
-    return
+      listoGrabar();
+      console.log('Este es la pregunta 4: ', conjuntoVideos);
+      return
     }
   }
 })
